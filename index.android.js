@@ -16,9 +16,7 @@ import {App} from './src/app';
 class TVShows extends Component {
     render() {
         return (
-            <View>
-                <App/>
-            </View>
+            <App/>
         );
     }
 }
