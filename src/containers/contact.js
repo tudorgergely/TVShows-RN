@@ -10,11 +10,6 @@ import {
 import {sendMessage} from '../redux/modules/contact';
 import {connect} from 'react-redux';
 import {changeBody} from "../redux/modules/contact";
-import {
-    MKButton,
-    MKColor,
-    MKTextField,
-} from 'react-native-material-kit';
 
 const mapStateToProps = ({contact}) => {
     return {
@@ -59,7 +54,7 @@ const C = ({updateText, onSendClicked, body, error}) => {
         Alert.alert('Error', error, [{text: 'OK'}]);
     }
     return <View style={styles.container}>
-        <MKTextField
+{/*        <MKTextField
             onChange={event => updateText(event.nativeEvent.text)}
             multiline={true}
             numberOfLines={4}
@@ -81,7 +76,7 @@ const C = ({updateText, onSendClicked, body, error}) => {
                   style={{color: 'white', fontWeight: 'bold',}}>
                 Send
             </Text>
-        </MKButton>
+        </MKButton>*/}
     </View>
 };
 
