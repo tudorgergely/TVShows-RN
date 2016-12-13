@@ -35,7 +35,7 @@ export function initialLoadEpic(actions$) {
     return actions$.ofType(START)
         .debounceTime(1000)
         .mapTo({
-            type: LOAD, // hardcoded list for initial version
-            items: ['a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b',]
+            type: LOAD,
+            items: ['a']
         })
 }
