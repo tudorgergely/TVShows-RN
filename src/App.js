@@ -1,11 +1,11 @@
 import React from 'react';
 import configureStore from './redux/configureStore';
 import {Provider, connect} from 'react-redux';
-import Contact from './containers/contact';
-import Home from './containers/home';
+import Contact from './containers/Contact';
+import Home from './containers/Home';
 import TvShowDetail from './containers/TvShowDetail';
 import {Scene, Router, Actions} from 'react-native-router-flux';
-import Drawer from './components/drawer';
+import Drawer from './components/SideDrawer';
 import Search from "./containers/Search";
 
 const RouterWithRedux = connect()(Router);
