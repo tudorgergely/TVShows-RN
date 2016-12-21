@@ -6,6 +6,7 @@ import {Container, Content, InputGroup, Input, List, ListItem, Text, Spinner} fr
 import TvShowCard from '../components/TvShowCard';
 import TvShowsList from '../components/TvShowsList';
 import {Actions} from 'react-native-router-flux';
+import CreateCollection from    '../components/CreateCollection';
 
 const mapStateToProps = ({search}) => {
     return {
@@ -30,6 +31,12 @@ class Search extends React.Component {
         this.state = {
             searchText: ''
         };
+    }
+
+    componentDidMount() {
+        // Snackbar.show({
+        //     title: 'Hello world'
+        // });
     }
 
     render() {

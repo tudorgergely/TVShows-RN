@@ -5,11 +5,11 @@ import {Actions} from "react-native-router-flux";
 
 const options = [
     {
-        name: 'Home',
+        name: 'Search',
         action: () => {
             setTimeout(() => Actions.refresh({key: 'drawer', open: value => !value}));
 
-            Actions.home();
+            Actions.search();
         }
     },
     {
@@ -18,6 +18,14 @@ const options = [
             setTimeout(() => Actions.refresh({key: 'drawer', open: value => !value}));
 
             Actions.contact();
+        }
+    },
+    {
+        name: 'Favorites',
+        action: () => {
+            setTimeout(() => Actions.refresh({key: 'drawer', open: value => !value}));
+
+            Actions.favorites();
         }
     }
 ];
@@ -43,6 +51,6 @@ const styles = StyleSheet.create({
 export default function SideMenu() {
     return <View style={styles.container}>
         <Text style={styles.title}>MENU</Text>
-        {options.map((option, i) => <Button key={i}>{option.name}</Button>)}
+        {options.map((option, i) => <Button key={i} onPress={option.action} transparent>{option.name}</Button>)}
     </View>
 };
