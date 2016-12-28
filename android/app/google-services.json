@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "835906598601",
+    "firebase_url": "https://tvshows-cacae.firebaseio.com",
+    "project_id": "tvshows-cacae",
+    "storage_bucket": "tvshows-cacae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835906598601:android:ce2845a857140d90",
+        "android_client_info": {
+          "package_name": "com.tvshows"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835906598601-70hb4qctm5dnudeke57db6jfb45tmsj9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tvshows",
+            "certificate_hash": "5C3254EC77B09ACB279965AE958DAF6102DDFA9F"
+          }
+        },
+        {
+          "client_id": "835906598601-c1f0begdu40580hjp83cj43utrmupda2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCne62mQv4OwBty4amfPVbwY2ZtpGiye0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835906598601-c1f0begdu40580hjp83cj43utrmupda2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

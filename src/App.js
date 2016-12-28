@@ -7,12 +7,14 @@ import {Scene, Router, Actions, ActionConst} from "react-native-router-flux";
 import Drawer from "./components/SideDrawer";
 import Search from "./containers/Search";
 import Favorites from "./containers/Favorites";
+import Login from "./containers/Login";
 
 const RouterWithRedux = connect()(Router);
 const scenes = Actions.create(
     <Scene key="root">
         <Scene key="drawer" component={Drawer} open={false}>
             <Scene key="main" tabs={false}>
+                <Scene key='login' component={Login} title="Login" type={ActionConst.REPLACE}/>
                 <Scene key='contact' component={Contact} title="Contact" type={ActionConst.REPLACE}/>
                 <Scene key='search' component={Search} title="Search" type={ActionConst.REPLACE}/>
                 <Scene key='favorites' component={Favorites} title="Favorites" type={ActionConst.REPLACE}/>
