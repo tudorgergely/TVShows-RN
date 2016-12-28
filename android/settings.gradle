@@ -1,7 +1,7 @@
 rootProject.name = 'TVShows'
-include ':react-native-snackbar'
-project(':react-native-snackbar').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-snackbar/android')
-include ':react-native-android-snackbar'
-project(':react-native-android-snackbar').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-android-snackbar/android')
+include ':react-native-firestack'
+project(':react-native-firestack').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-firestack/android')
+include ':react-native-svg'
+project(':react-native-svg').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-svg/android')
 
 include ':app'

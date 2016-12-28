@@ -1,4 +1,3 @@
-import Rx from 'rxjs/Rx';
 import {AsyncStorage} from "react-native";
 
 const FAVORITES_KEY = '@tvShows/favorites';
@@ -20,7 +19,7 @@ export default function reducer(state = defaultState, action = {}) {
             return {
                 ...state,
                 persisted: false,
-                favoriteTvShows: [...state.favoriteTvShows, action.tvShow.id]
+                favoriteTvShows: [...state.favoriteTvShows, action.tvShow]
             };
         case FAVORITE_SAVED:
             return {
@@ -35,11 +34,18 @@ export default function reducer(state = defaultState, action = {}) {
         case FAVORITES_LOADED:
             return {
                 ...state,
-                favoriteTvShows: action.favoriteTvShows,
+                favoriteTvShows: action.favoriteTvShows || [],
                 loading: false
             };
         default:
             return state;
+    }
+}
+
+export function starTvShow(tvShow) {
+    return {
+        type: STAR_TV_SHOW,
+        tvShow
     }
 }
 
@@ -52,8 +58,8 @@ export function loadFavorites() {
 export function persistFavoritesEpic(actions$, store) {
     return actions$.ofType(STAR_TV_SHOW)
         .mergeMap(() => {
-            const state = store.getState();
-            return AsyncStorage.setItem(FAVORITES_KEY, state.favoriteTvShows)
+            const state = store.getState().favorite;
+            return AsyncStorage.setItem(FAVORITES_KEY, JSON.stringify(state.favoriteTvShows))
                 .then(() => ({
                     type: FAVORITE_SAVED
                 }));
@@ -65,9 +71,11 @@ export function loadInitialFavoritesEpic(actions$) {
         .mergeMap(() => {
             return AsyncStorage.getItem(FAVORITES_KEY)
                 .then(favoritesString => JSON.parse(favoritesString))
-                .then(favoriteTvShows => ({
-                    type: FAVORITES_LOADED,
-                    favoriteTvShows
-                }));
+                .then(favoriteTvShows => {
+                    return ({
+                        type: FAVORITES_LOADED,
+                        favoriteTvShows
+                    });
+                });
         })
 }

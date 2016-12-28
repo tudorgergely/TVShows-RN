@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
+import {Container, Content} from "native-base";
 import {loadFavorites} from "../redux/modules/favorite";
-import {Spinner} from 'native-base';
-import TvShowsList from '../components/TvShowsList';
+import TvShowsList from "../components/TvShowsList";
 import {connect} from "react-redux";
 
 const mapStateToProps = ({favorite}) => {
@@ -24,7 +24,9 @@ class Favorites extends React.Component {
 
     render() {
         const {favoriteTvShows, loading} = this.props;
-        return <TvShowsList tvShows={favoriteTvShows || []} searching={loading}/>
+        return <Container style={{marginTop: 60}}>
+            <Content><TvShowsList tvShows={favoriteTvShows || []} searching={loading}/></Content>
+        </Container>
     }
 }
 

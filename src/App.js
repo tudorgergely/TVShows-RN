@@ -1,10 +1,10 @@
-import React from 'react';
-import configureStore from './redux/configureStore';
-import {Provider, connect} from 'react-redux';
-import Contact from './containers/Contact';
-import TvShowDetail from './containers/TvShowDetail';
-import {Scene, Router, Actions} from 'react-native-router-flux';
-import Drawer from './components/SideDrawer';
+import React from "react";
+import configureStore from "./redux/configureStore";
+import {Provider, connect} from "react-redux";
+import Contact from "./containers/Contact";
+import TvShowDetail from "./containers/TvShowDetail";
+import {Scene, Router, Actions, ActionConst} from "react-native-router-flux";
+import Drawer from "./components/SideDrawer";
 import Search from "./containers/Search";
 import Favorites from "./containers/Favorites";
 
@@ -13,9 +13,9 @@ const scenes = Actions.create(
     <Scene key="root">
         <Scene key="drawer" component={Drawer} open={false}>
             <Scene key="main" tabs={false}>
-                <Scene key='contact' component={Contact} title="Contact"/>
-                <Scene key='search' component={Search} title="Search"/>
-                <Scene key='favorites' component={Favorites} title="Favorites"/>
+                <Scene key='contact' component={Contact} title="Contact" type={ActionConst.REPLACE}/>
+                <Scene key='search' component={Search} title="Search" type={ActionConst.REPLACE}/>
+                <Scene key='favorites' component={Favorites} title="Favorites" type={ActionConst.REPLACE}/>
                 <Scene key='TvShowDetail' component={TvShowDetail} title="Tv Show Detail"/>
             </Scene>
         </Scene>

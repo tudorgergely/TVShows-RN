@@ -4,8 +4,8 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
-import com.azendoo.reactnativesnackbar.SnackbarPackage;
-import com.lugg.ReactSnackbar.ReactSnackbarPackage;
+import io.fullstack.firestack.FirestackPackage;
+import com.horcrux.svg.RNSvgPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -27,8 +27,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new SnackbarPackage(),
-            new ReactSnackbarPackage()
+            new FirestackPackage(),
+            new RNSvgPackage()
       );
     }
   };

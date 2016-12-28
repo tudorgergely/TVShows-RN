@@ -1,8 +1,8 @@
 import React from "react";
 import {Text, Spinner, List, ListItem, Container, Content} from "native-base";
-import {View} from 'react-native';
-import TvShowCard from './TvShowCard';
-import CreateCollection from '../components/CreateCollection';
+import {View} from "react-native";
+import TvShowCard from "./TvShowCard";
+import CreateCollection from "../components/CreateCollection";
 
 class TvShowsList extends React.Component {
     constructor() {
@@ -28,7 +28,8 @@ class TvShowsList extends React.Component {
                         {
                             tvShows.map((tvShow, i) =>
                                 <ListItem key={i}>
-                                    <TvShowCard {...tvShow} onPress={() => onItemPressed(tvShow)} onFavorite={onItemFavorite}/>
+                                    <TvShowCard {...tvShow} onPress={() => onItemPressed(tvShow)}
+                                                            onFavorite={() => onItemFavorite(tvShow)}/>
                                 </ListItem>
                             )
                         }
@@ -42,8 +43,8 @@ class TvShowsList extends React.Component {
     renderCreateCollection() {
         if (this.state.createCollectionVisible) {
             return <View style={{position: 'absolute', left: 0,right: 0, bottom: 0}}>
-                    <CreateCollection/>
-                </View>
+                <CreateCollection/>
+            </View>
         }
         return null;
     }

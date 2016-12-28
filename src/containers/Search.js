@@ -2,11 +2,10 @@ import React from "react";
 import {View, TextInput, TouchableNativeFeedback, StyleSheet, Alert, ListView} from "react-native";
 import {connect} from "react-redux";
 import {genericSearch} from "../redux/modules/search";
-import {Container, Content, InputGroup, Input, List, ListItem, Text, Spinner} from "native-base";
-import TvShowCard from '../components/TvShowCard';
-import TvShowsList from '../components/TvShowsList';
-import {Actions} from 'react-native-router-flux';
-import CreateCollection from    '../components/CreateCollection';
+import {Container, Content, InputGroup, Input} from "native-base";
+import TvShowsList from "../components/TvShowsList";
+import {Actions} from "react-native-router-flux";
+import {starTvShow} from "../redux/modules/favorite";
 
 const mapStateToProps = ({search}) => {
     return {
@@ -20,6 +19,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         genericSearch(q, page) {
             dispatch(genericSearch(q, page))
+        },
+        addToFavorites(tvShow) {
+            dispatch(starTvShow(tvShow));
         }
     }
 };
@@ -45,13 +47,14 @@ class Search extends React.Component {
                 <InputGroup borderType='underline'>
                     <Input placeholder='Search for a TV show' onChangeText={this.searchInputChanged}/>
                 </InputGroup>
-                <TvShowsList {...this.props} onItemPressed={(tvShow) => Actions.TvShowDetail({id:tvShow.id, title: tvShow.title})}/>
+                <TvShowsList {...this.props}
+                    onItemPressed={(tvShow) => Actions.TvShowDetail({id:tvShow.id, title: tvShow.title})}
+                    onItemFavorite={(tvShow) => this.props.addToFavorites(tvShow)}/>
             </Content>
         </Container>
     }
 
     search = () => {
-        console.log('searching');
     };
 
     searchInputChanged = (searchText) => {
