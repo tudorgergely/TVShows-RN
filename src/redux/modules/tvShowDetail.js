@@ -26,21 +26,12 @@ export default function reducer(state = defaultState, action = {}) {
     }
 }
 
-export function loadTvShow(id) {
-    return {
-        type: LOAD_TV_SHOW,
-        id
-    };
-}
+export const loadTvShow = id => ({type: LOAD_TV_SHOW, id});
 
-export function loadTvShowEpic(actions$) {
-    return actions$.ofType(LOAD_TV_SHOW)
-        .mergeMap(({id}) => {
-                return ajax.getJSON(`http://www.omdbapi.com/?i=${id}&plot=full&r=json`)
-                    .map(fetchTvShowFulfilled)
-            }
-        )
-}
+export const loadTvShowEpic = actions$ => actions$.ofType(LOAD_TV_SHOW)
+    .mergeMap(({id}) => ajax.getJSON(`http://www.omdbapi.com/?i=${id}&plot=full&r=json`)
+        .map(fetchTvShowFulfilled)
+    );
 
 const fetchTvShowFulfilled = payload => ({type: LOADED, tvShow: parseTvShowResponse(payload)});
 
@@ -53,4 +44,4 @@ export const parseTvShowResponse = (payload) => {
         posterUrl: Poster,
         id: imdbID
     });
-}
+};

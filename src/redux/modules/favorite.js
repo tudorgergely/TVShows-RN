@@ -42,40 +42,19 @@ export default function reducer(state = defaultState, action = {}) {
     }
 }
 
-export function starTvShow(tvShow) {
-    return {
-        type: STAR_TV_SHOW,
-        tvShow
-    }
-}
+export const starTvShow = tvShow => ({type: STAR_TV_SHOW, tvShow});
+export const loadFavorites = () => ({type: LOAD_FAVORITES});
 
-export function loadFavorites() {
-    return {
-        type: LOAD_FAVORITES
-    };
-}
+export const persistFavoritesEpic = (actions$, store) => actions$.ofType(STAR_TV_SHOW)
+    .mergeMap(async() => {
+        const state = store.getState().favorite;
+        await AsyncStorage.setItem(FAVORITES_KEY, JSON.stringify(state.favoriteTvShows));
+        return {type: FAVORITE_SAVED};
+    });
 
-export function persistFavoritesEpic(actions$, store) {
-    return actions$.ofType(STAR_TV_SHOW)
-        .mergeMap(() => {
-            const state = store.getState().favorite;
-            return AsyncStorage.setItem(FAVORITES_KEY, JSON.stringify(state.favoriteTvShows))
-                .then(() => ({
-                    type: FAVORITE_SAVED
-                }));
-        });
-}
-
-export function loadInitialFavoritesEpic(actions$) {
-    return actions$.ofType(LOAD_FAVORITES)
-        .mergeMap(() => {
-            return AsyncStorage.getItem(FAVORITES_KEY)
-                .then(favoritesString => JSON.parse(favoritesString))
-                .then(favoriteTvShows => {
-                    return ({
-                        type: FAVORITES_LOADED,
-                        favoriteTvShows
-                    });
-                });
-        })
-}
+export const loadInitialFavoritesEpic = actions$ => actions$.ofType(LOAD_FAVORITES)
+    .mergeMap(async() => {
+        const favoritesString = await AsyncStorage.getItem(FAVORITES_KEY);
+        const favoriteTvShows = JSON.parse(favoritesString);
+        return {type: FAVORITES_LOADED, favoriteTvShows};
+    });

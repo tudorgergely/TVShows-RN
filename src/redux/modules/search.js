@@ -1,5 +1,4 @@
-import Rx from 'rxjs/Rx';
-import { ajax } from 'rxjs/observable/dom/ajax';
+import {ajax} from "rxjs/observable/dom/ajax";
 import {parseTvShowResponse} from "./tvShowDetail";
 
 const SEARCH_TV_SHOWS = 'tvshows/search/SEARCH_TV_SHOWS';
@@ -8,7 +7,7 @@ const SEARCH_RESULTS = 'tvshows/search/SEARCH_RESULTS';
 const defaultState = {
     tvShows: [],
     searching: false,
-    error: false,
+    error: null,
 };
 
 export default function reducer(state = defaultState, action = {}) {
@@ -30,19 +29,12 @@ export default function reducer(state = defaultState, action = {}) {
     }
 }
 
-export const genericSearch = (q, page) => ({
-    type: SEARCH_TV_SHOWS,
-    q,
-    page
-});
+export const genericSearch = (q, page) => ({type: SEARCH_TV_SHOWS, q, page});
 
-export function searchTvShowsEpic(actions$) {
-    return actions$.ofType(SEARCH_TV_SHOWS)
-        .mergeMap(({q, page}) =>
-            ajax.getJSON(`http://www.omdbapi.com/?s=${q + '*'}&r=json`)
-                .map(fetchTvShowFulfilled)
-        )
-}
+export const searchTvShowsEpic = actions$ => actions$.ofType(SEARCH_TV_SHOWS)
+    .mergeMap(({q, page}) => ajax.getJSON(`http://www.omdbapi.com/?s=${q + '*'}&r=json`)
+        .map(fetchTvShowFulfilled)
+    );
 
 const fetchTvShowFulfilled = response => ({type: SEARCH_RESULTS, ...parseSearchResponse(response)});
 

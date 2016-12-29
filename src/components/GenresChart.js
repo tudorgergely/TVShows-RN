@@ -1,46 +1,43 @@
 import React from "react";
 import {View} from "react-native";
 import {Radar} from "react-native-pathjs-charts";
+import {AVAILABLE_GENRES} from "../assets";
 
-class GenresChart extends React.Component {
-    render() {
-        let data = [{
-            "speed": 74,
-            "balance": 29,
-            "explosives": 40,
-            "energy": 40,
-            "flexibility": 30,
-            "agility": 25,
-            "endurance": 44
-        }];
-
-        let options = {
-            width: 300,
-            height: 300,
-            margin: {
-            },
-            r: 100,
-            max: 100,
-            fill: "#2980B9",
-            stroke: "#2980B9",
-            animate: {
-                type: 'oneByOne',
-                duration: 200
-            },
-            label: {
-                fontFamily: 'Arial',
-                fontSize: 14,
-                fontWeight: true,
-                fill: '#34495E'
-            }
-        };
-
-        return (
-            <View>
-                <Radar data={data} options={options}/>
-            </View>
-        )
+const CHART_DEFAULT_OPTIONS = {
+    width: 300,
+    height: 300,
+    margin: {},
+    r: 100,
+    max: 100,
+    fill: "#2980B9",
+    stroke: "#2980B9",
+    animate: {
+        type: 'oneByOne',
+        duration: 200
+    },
+    label: {
+        fontFamily: 'Arial',
+        fontSize: 14,
+        fontWeight: true,
+        fill: '#34495E'
     }
-}
+};
+
+const GenresChart = ({genres}) => {
+    const data = {
+        ...AVAILABLE_GENRES,
+        ...genres.reduce((final, current) => ({...o, [current]: 1}), {})
+    };
+
+    return (
+        <View>
+            <Radar data={data} options={CHART_DEFAULT_OPTIONS}/>
+        </View>
+    );
+};
+
+GenresChart.propTypes = {
+    genres: React.PropTypes.array
+};
 
 export default GenresChart;

@@ -1,16 +1,8 @@
-import React from 'react';
-import {
-    View,
-    Text,
-    TextInput,
-    TouchableNativeFeedback,
-    StyleSheet,
-    Alert
-} from 'react-native';
-import {sendMessage} from '../redux/modules/contact';
-import {connect} from 'react-redux';
-import {changeBody} from "../redux/modules/contact";
-import {Button, Input, InputGroup, Container, Content} from 'native-base';
+import React from "react";
+import {StyleSheet, Alert} from "react-native";
+import {sendMessage, changeBody} from "../redux/modules/contact";
+import {connect} from "react-redux";
+import {Button, Input, InputGroup, Container, Content} from "native-base";
 
 const mapStateToProps = ({contact}) => {
     return {
@@ -50,7 +42,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const C = ({updateText, onSendClicked, body, error}) => {
+const Contact = ({updateText, onSendClicked, body, error}) => {
     if (error) {
         Alert.alert('Error', error, [{text: 'OK'}]);
     }
@@ -64,6 +56,4 @@ const C = ({updateText, onSendClicked, body, error}) => {
     </Container>
 };
 
-const Contact = connect(mapStateToProps, mapDispatchToProps)(C);
-
-export default Contact;
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);
